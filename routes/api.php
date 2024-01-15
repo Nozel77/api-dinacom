@@ -5,7 +5,10 @@ use App\Http\Controllers\API\CourseController;
 use App\Http\Controllers\API\CourseCuricullumController;
 use App\Http\Controllers\API\CourseDescriptionController;
 use App\Http\Controllers\API\CourseUserController;
+use App\Http\Controllers\API\CuricullumDescriptionController;
 use App\Http\Controllers\API\DetailJobController;
+use App\Http\Controllers\API\InternshipController;
+use App\Http\Controllers\API\InternshipUserController;
 use App\Http\Controllers\API\JobController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -40,7 +43,7 @@ Route::put('job/{id}', [JobController::class, 'update']);
 Route::delete('job/{id}', [JobController::class, 'delete']);
 
 //route detail job
-Route::get('job/detail', [DetailJobController::class, 'index']); 
+Route::get(' job/detail', [DetailJobController::class, 'index']); 
 Route::get('job/detail/{id}', [DetailJobController::class, 'show']); 
 Route::post('job/detail', [DetailJobController::class, 'store']); 
 Route::put('job/detail/{id}', [DetailJobController::class, 'update']); 
@@ -58,16 +61,14 @@ Route::post('course-user/add', [CourseUserController::class, 'add']);
 Route::post('course-user/update', [CourseUserController::class, 'update']);
 Route::post('course-user/delete', [CourseUserController::class, 'delete']);
 
-//route course-curriculum 
-Route::get('course-curicullum', [CourseCuricullumController::class, 'index']);
-Route::post('course-curicullum', [CourseCuricullumController::class, 'store']);
-Route::get('course-curicullum/{id}', [CourseCuricullumController::class, 'show']);
-Route::put('course-curicullum/{id}', [CourseCuricullumController::class, 'update']);
-Route::delete('course-curicullum', [CourseCuricullumController::class, 'destroy']);
+//route internship
+Route::get('internship', [InternshipController::class, 'index']);
+Route::post('internship', [InternshipController::class, 'store']);
+Route::get('internship/{id}', [InternshipController::class, 'show']);
+Route::put('internship/{id}', [InternshipController::class, 'update']);
+Route::delete('internship/{id}', [InternshipController::class, 'destroy']);
 
-//route course-description
-Route::get('course-description', [CourseDescriptionController::class, 'index']);
-Route::post('course-description', [CourseDescriptionController::class, 'store']);
-Route::get('course-description/{id}', [CourseDescriptionController::class, 'show']);
-Route::put('course-description/{id}', [CourseDescriptionController::class, 'update']);
-Route::delete('course-curriculum', [CourseDescriptionController::class, 'destroy']);
+//route internship-user
+Route::post('internship-user/add', [InternshipUserController::class, 'add']);
+Route::post('internship-user/update', [InternshipUserController::class, 'update']);
+Route::post('internship-user/delete', [InternshipUserController::class, 'delete']);
