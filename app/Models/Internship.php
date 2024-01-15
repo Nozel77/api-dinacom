@@ -10,4 +10,8 @@ class Internship extends Model
     use HasFactory;
     protected $table = 'internship';
     protected $fillable = ['company_name', 'position', 'company_image', 'batch'];
+
+    public function user(){
+        return $this->belongsToMany(User::class, 'internship_users');
+    }
 }

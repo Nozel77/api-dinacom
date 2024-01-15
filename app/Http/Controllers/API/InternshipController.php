@@ -28,9 +28,9 @@ class InternshipController extends Controller
     {
         $dataInternship = new Internship();
         $dataInternship->company_name = $request->company_name;
-        $dataInternship->company_name = $request->position;
-        $dataInternship->company_name = $request->company_image;
-        $dataInternship->company_name = $request->batch;
+        $dataInternship->position = $request->position;
+        $dataInternship->company_image = $request->company_image;
+        $dataInternship->batch = $request->batch;
 
         $post = $dataInternship->save();
         return response()->json([
@@ -62,9 +62,9 @@ class InternshipController extends Controller
     {
         $dataInternship = Internship::find($id);
         $dataInternship->company_name = $request->company_name;
-        $dataInternship->company_name = $request->position;
-        $dataInternship->company_name = $request->company_image;
-        $dataInternship->company_name = $request->batch;
+        $dataInternship->position = $request->position;
+        $dataInternship->company_image = $request->company_image;
+        $dataInternship->batch = $request->batch;
 
         $post = $dataInternship->save();
         return response()->json([

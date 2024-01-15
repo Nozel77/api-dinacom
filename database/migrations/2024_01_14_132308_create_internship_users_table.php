@@ -11,10 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('curicullum_descriptions', function (Blueprint $table) {
+        Schema::create('internship_users', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('curicullum_id')->constrained();
-            $table->foreignId('description_id')->constrained();
+            $table->foreignId('user_id')->constrained(table:'users');
+            $table->foreignId('internship_id')->constrained(table:'internship');
             $table->timestamps();
         });
     }
@@ -24,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('curicullum_descriptions');
+        Schema::dropIfExists('internship_users');
     }
 };
