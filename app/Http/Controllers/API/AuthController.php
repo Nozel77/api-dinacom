@@ -88,6 +88,8 @@ class AuthController extends Controller
         'province' => 'nullable|string',
         'city' => 'nullable|string',
         'birthdate' => 'nullable|date',
+        'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+        'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
     ]);
 
     if ($validator->fails()) {

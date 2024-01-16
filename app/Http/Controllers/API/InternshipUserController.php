@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\InternshipUser;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -63,5 +64,27 @@ class InternshipUserController extends Controller
         } else {
             echo "No user ID provided.";
         }
+    }
+
+    public function show(string $user_id){
+        $data = InternshipUser::where('user_id', $user_id)->get();
+    
+        if ($data->isEmpty()) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Data not found'
+            ], 404);
+        }
+    
+        $internshipIds = $data->pluck('internship_id')->toArray();
+    
+        return response()->json([
+            'status' => true,
+            'message' => 'Data successfully loaded',
+            'data' => [
+                'user_id' => $user_id,
+                'internship_id' => $internshipIds
+            ]
+        ], 200);
     }
 }

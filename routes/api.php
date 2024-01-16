@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\API\ArticleController;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\CourseController;
 use App\Http\Controllers\API\CourseCuricullumController;
 use App\Http\Controllers\API\CourseDescriptionController;
+use App\Http\Controllers\API\CourseEnrollController;
 use App\Http\Controllers\API\CourseUserController;
 use App\Http\Controllers\API\CuricullumDescriptionController;
+use App\Http\Controllers\API\DetailCourseController;
 use App\Http\Controllers\API\DetailJobController;
 use App\Http\Controllers\API\InternshipController;
 use App\Http\Controllers\API\InternshipUserController;
@@ -56,7 +59,18 @@ Route::get('course/{id}', [CourseController::class, 'show']);
 Route::put('course/{id}', [CourseController::class, 'update']);
 Route::delete('course/{id}', [CourseController::class, 'destroy']);
 
+//route detail course
+Route::get(' course/detail', [DetailCourseController::class, 'index']); 
+Route::get('course/detail/{id}', [DetailCourseController::class, 'show']); 
+Route::post('course/detail', [DetailCourseController::class, 'store']); 
+Route::put('course/detail/{id}', [DetailCourseController::class, 'update']); 
+Route::delete('course/detail/{id}', [DetailCourseController::class, 'destroy']); 
+
+//route detail course after enroll
+Route::post('course-enroll/detail', [CourseEnrollController::class, 'store']);
+
 //route course-user
+Route::get('course-user/{user_id}', [CourseUserController::class, 'show']);
 Route::post('course-user/add', [CourseUserController::class, 'add']);
 Route::post('course-user/update', [CourseUserController::class, 'update']);
 Route::post('course-user/delete', [CourseUserController::class, 'delete']);
@@ -69,6 +83,11 @@ Route::put('internship/{id}', [InternshipController::class, 'update']);
 Route::delete('internship/{id}', [InternshipController::class, 'destroy']);
 
 //route internship-user
+Route::get('internship-user/{user_id}', [InternshipUserController::class, 'show']);
 Route::post('internship-user/add', [InternshipUserController::class, 'add']);
 Route::post('internship-user/update', [InternshipUserController::class, 'update']);
 Route::post('internship-user/delete', [InternshipUserController::class, 'delete']);
+
+//route list article 
+Route::get('article', [ArticleController::class, 'index']);
+
