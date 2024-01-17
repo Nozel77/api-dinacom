@@ -13,6 +13,7 @@ use App\Http\Controllers\API\DetailJobController;
 use App\Http\Controllers\API\InternshipController;
 use App\Http\Controllers\API\InternshipUserController;
 use App\Http\Controllers\API\JobController;
+use App\Http\Controllers\API\SearchController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -90,4 +91,10 @@ Route::post('internship-user/delete', [InternshipUserController::class, 'delete'
 
 //route list article 
 Route::get('article', [ArticleController::class, 'index']);
+
+//route search 
+Route::get('search/course', [SearchController::class, 'searchCourse']);
+Route::get('search/article', [SearchController::class, 'searchArticle']);
+Route::get('search/internship', [SearchController::class, 'searchInternship']);
+Route::get('search/job', [SearchController::class, 'searchJob']);
 
