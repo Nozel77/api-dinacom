@@ -11,13 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('course_enroll', function (Blueprint $table) {
+        Schema::create('enroll_course', function (Blueprint $table) {
             $table->id();
-            $table->longText('introduction_file');
-            $table->longText('about_file');
-            $table->longText('explanation_file');
-            $table->longText('closing_file');
-            $table->longText('assessment_file');
+            $table->string('introduction_file');
+            $table->string('about_file');
+            $table->string('content_file');
+            $table->string('closing_file');
+            $table->string('assessment_file');
             $table->timestamps();
         });
     }
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('course_enroll');
+        Schema::dropIfExists('enroll_course');
     }
 };

@@ -81,15 +81,14 @@ class AuthController extends Controller
     $validator = Validator::make($request->all(), [
         'name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:users,email,'.$id,
-        'password' => 'required|string|min:8',
         'no_hp' => 'nullable|string', 
         'role' => 'nullable|string',
         'gender' => 'nullable|integer',
         'province' => 'nullable|string',
         'city' => 'nullable|string',
         'birthdate' => 'nullable|date',
-        'profile_image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
-        'banner_image' => 'nullable|image|mimes:jpeg,png,jpg,gif',
+        'profile_image' => 'nullable|string',
+        'banner_image' => 'nullable|string',
     ]);
 
     if ($validator->fails()) {
@@ -98,13 +97,14 @@ class AuthController extends Controller
 
     $user->name = $request->input('name');
     $user->email = $request->input('email');
-    $user->password = bcrypt($request->input('password'));
     $user->no_hp = $request->input('no_hp');
     $user->role = $request->input('role');
     $user->gender = $request->input('gender');
     $user->province = $request->input('province');
     $user->city = $request->input('city');
     $user->birthdate = $request->input('birthdate');
+    $user->profile_image = $request->input('profile_image');
+    $user->banner_image = $request->input('banner_image');
 
     $isUpdated = $user->save();
 
