@@ -8,8 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class CourseEnroll extends Model
 {
     use HasFactory;
-    protected $table = 'course_enroll';
-    protected $fillable = ['introduction_file'];
+    protected $table = 'enroll_course';
+    protected $fillable = [
+        'introduction_file',
+        'about_file',
+        'content_file',
+        'closing_file',
+        'assessment_file'
+    ];
 }
-
-//, 'about_file', 'explanation_file', 'closing_file', 'assessment_file'

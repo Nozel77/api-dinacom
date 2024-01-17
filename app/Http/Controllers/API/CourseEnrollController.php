@@ -5,22 +5,40 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use App\Models\CourseEnroll;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CourseEnrollController extends Controller
 {
-    public function store(Request $request){
+    public function index()
+    {
+        $data = CourseEnroll::all();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'data succcesfully loaded',
+            'data' => $data
+        ], 200);
+    }
+
+    public function store(Request $request)
+    {
         $request->validate([
-            'file' => 'required|mimes:pdf|max:10240', 
+            'introduction_file' => 'required|mimes:pdf|max:12048',
+            'about_file' => 'required|mimes:pdf|max:12048',
+            'content_file' => 'required|mimes:pdf|max:12048',
+            'closing_file' => 'required|mimes:pdf|max:12048',
+            'assessment_file' => 'required|mimes:pdf|max:12048',
         ]);
 
-        $file = $request->file('file');
-        $nama_file = $file->getClientOriginalName();
-        $path = $file->storeAs('pdf_files', $nama_file, 'public');
+        $enrollCourse = new CourseEnroll();
 
-        $courseEnroll = new CourseEnroll();
-        $courseEnroll->introduction_file = $nama_file;
-        $courseEnroll->save();
+        $enrollCourse->introduction_file = $request->file('introduction_file')->store('enroll_course', 'public');
+        $enrollCourse->about_file = $request->file('about_file')->store('enroll_course', 'public');
+        $enrollCourse->content_file = $request->file('content_file')->store('enroll_course', 'public');
+        $enrollCourse->closing_file = $request->file('closing_file')->store('enroll_course', 'public');
+        $enrollCourse->assessment_file = $request->file('assessment_file')->store('enroll_course', 'public');
 
-        return response()->json(['message' => 'File PDF berhasil diunggah'], 200);
+        $enrollCourse->save();
+
+        return response()->json(['message' => 'PDF files uploaded successfully'], 201);
     }
 }
