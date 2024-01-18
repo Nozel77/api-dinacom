@@ -9,6 +9,7 @@ use App\Http\Controllers\API\CourseEnrollController;
 use App\Http\Controllers\API\CourseUserController;
 use App\Http\Controllers\API\CuricullumDescriptionController;
 use App\Http\Controllers\API\DetailCourseController;
+use App\Http\Controllers\API\DetailInternshipController;
 use App\Http\Controllers\API\DetailJobController;
 use App\Http\Controllers\API\InternshipController;
 use App\Http\Controllers\API\InternshipUserController;
@@ -80,6 +81,13 @@ Route::post('internship', [InternshipController::class, 'store']);
 Route::get('internship/{id}', [InternshipController::class, 'show']);
 Route::put('internship/{id}', [InternshipController::class, 'update']);
 Route::delete('internship/{id}', [InternshipController::class, 'destroy']);
+
+//route detail internship
+Route::get('internship/detail', [DetailInternshipController::class, 'index']);
+Route::post('internship/detail', [DetailInternshipController::class, 'store']);
+Route::get('internship/detail/{id}', [DetailInternshipController::class, 'show']);
+Route::put('internship/detail/{id}', [DetailInternshipController::class, 'update']);
+Route::delete('internship/detail/{id}', [DetailInternshipController::class, 'destroy']);
 
 //route internship-user
 Route::get('internship-user/{user_id}', [InternshipUserController::class, 'show']);
