@@ -31,6 +31,7 @@ class InternshipController extends Controller
         $dataInternship->position = $request->position;
         $dataInternship->company_image = $request->company_image;
         $dataInternship->batch = $request->batch;
+        $dataInternship->category = $request->category;
 
         $post = $dataInternship->save();
         return response()->json([
@@ -65,6 +66,7 @@ class InternshipController extends Controller
         $dataInternship->position = $request->position;
         $dataInternship->company_image = $request->company_image;
         $dataInternship->batch = $request->batch;
+        $dataInternship->category = $request->category;
 
         $post = $dataInternship->save();
         return response()->json([

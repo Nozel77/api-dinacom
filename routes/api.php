@@ -61,11 +61,8 @@ Route::put('course/{id}', [CourseController::class, 'update']);
 Route::delete('course/{id}', [CourseController::class, 'destroy']);
 
 //route detail course
-Route::get(' course/detail', [DetailCourseController::class, 'index']); 
-Route::get('course/detail/{id}', [DetailCourseController::class, 'show']); 
-Route::post('course/detail', [DetailCourseController::class, 'store']); 
-Route::put('course/detail/{id}', [DetailCourseController::class, 'update']); 
-Route::delete('course/detail/{id}', [DetailCourseController::class, 'destroy']); 
+Route::post('course/detail', [DetailCourseController::class, 'store']);
+Route::get('course/detail/{detailCourse}', [DetailCourseController::class, 'show']);
 
 //route detail course after enroll
 Route::get('/enroll-course', [CourseEnrollController::class, 'index']);

@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class DetailCourse extends Model
 {
     use HasFactory;
-    protected $table = 'detail_course';   
-    protected $casts = [
-        'course_curicullum' => 'array',
-        'course_description' => 'array',
-    ];
+    protected $table = 'detail_course';
+    protected $fillable = ['title', 'description', 'difficulty', 'category'];
+
+    public function options(){
+        return $this->hasMany(DetailCourseOption::class);
+    }
 }
