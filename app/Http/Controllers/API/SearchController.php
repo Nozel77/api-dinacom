@@ -52,7 +52,7 @@ class SearchController extends Controller
     public function searchInternship(Request $request){
         $position = $request->input('search');
     
-        $result = Article::where("position", "like", "%".$position."%")->get();
+        $result = Internship::where("position", "like", "%".$position."%")->get();
         
         if ($result->count() > 0) {
             return response()->json([

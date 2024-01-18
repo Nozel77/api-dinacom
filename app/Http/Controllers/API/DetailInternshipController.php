@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Internship;
+use App\Models\DetailInternship;
 use Illuminate\Http\Request;
 
-class InternshipController extends Controller
+class DetailInternshipController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data = Internship::orderBy('id')->get();
+        $data = DetailInternship::orderBy('id')->get();
         return response()->json([
             'status' => 'success',
             'message' => 'data succcesfully loaded',
@@ -26,19 +26,20 @@ class InternshipController extends Controller
      */
     public function store(Request $request)
     {
-        $dataInternship = new Internship();
-        $dataInternship->company_name = $request->company_name;
-        $dataInternship->position = $request->position;
-        $dataInternship->company_image = $request->company_image;
-        $dataInternship->batch = $request->batch;
-        $dataInternship->category = $request->category;
+        $dataDetailInternship = new DetailInternship();
+        $dataDetailInternship->title = $request->title;
+        $dataDetailInternship->category = $request->category;
+        $dataDetailInternship->description = $request->description;
+        $dataDetailInternship->image_company = $request->image_company;
+        $dataDetailInternship->image_banner = $request->image_banner;
 
-        $post = $dataInternship->save();
+        $post = $dataDetailInternship->save();
         return response()->json([
             'status' => true,
             'message' => 'data added successfully',
-            'data' => $dataInternship
+            'data' => $dataDetailInternship
         ], 200);
+
     }
 
     /**
@@ -46,7 +47,7 @@ class InternshipController extends Controller
      */
     public function show(string $id)
     {
-        $data = Internship::find($id);
+        $data = DetailInternship::find($id);
         if ($data) {
             return response()->json([
                 'status' => true,
@@ -61,20 +62,26 @@ class InternshipController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $dataInternship = Internship::find($id);
-        $dataInternship->company_name = $request->company_name;
-        $dataInternship->position = $request->position;
-        $dataInternship->company_image = $request->company_image;
-        $dataInternship->batch = $request->batch;
-        $dataInternship->category = $request->category;
+        $dataDetailInternship = DetailInternship::find($id);
+        if (!$dataDetailInternship) {
+            return response()->json([
+                'status' => false,
+                'message' => 'data not found',
+            ], 404);
+        }
 
-        $post = $dataInternship->save();
+        $dataDetailInternship->title = $request->title;
+        $dataDetailInternship->category = $request->category;
+        $dataDetailInternship->description = $request->description;
+        $dataDetailInternship->image_company = $request->image_company;
+        $dataDetailInternship->image_banner = $request->image_banner;
+
+        $dataDetailInternship->save();
         return response()->json([
             'status' => true,
-            'message' => 'data added successfully',
-            'data' => $dataInternship
+            'message' => 'data successfully updated',
+            'data' => $dataDetailInternship
         ], 200);
-
     }
 
     /**
@@ -82,15 +89,15 @@ class InternshipController extends Controller
      */
     public function destroy(string $id)
     {
-        $dataInternship = Internship::find($id);
-        if (empty($dataInternship)) {
+        $dataDetailInternship = DetailInternship::find($id);
+        if (empty($dataDetailInternship)) {
             return response()->json([
                 'status' => false,
                 'message' => 'data not found',
             ], 404);
         }
 
-        $post = $dataInternship->delete();
+        $post = $dataDetailInternship->delete();
 
         return response()->json([
             'status' => true,
