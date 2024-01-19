@@ -11,6 +11,7 @@ use App\Http\Controllers\API\CuricullumDescriptionController;
 use App\Http\Controllers\API\DetailCourseController;
 use App\Http\Controllers\API\DetailInternshipController;
 use App\Http\Controllers\API\DetailJobController;
+use App\Http\Controllers\API\FilterController;
 use App\Http\Controllers\API\InternshipController;
 use App\Http\Controllers\API\InternshipUserController;
 use App\Http\Controllers\API\JobController;
@@ -97,10 +98,21 @@ Route::post('internship-user/delete', [InternshipUserController::class, 'delete'
 
 //route list article 
 Route::get('article', [ArticleController::class, 'index']);
+Route::post('article', [ArticleController::class, 'store']);
+Route::get('article/{id}', [ArticleController::class, 'show']);
+Route::put('article/{id}', [ArticleController::class, 'update']);
+Route::delete('article/{id}', [ArticleController::class, 'destroy']);
 
 //route search 
 Route::get('search/course', [SearchController::class, 'searchCourse']);
 Route::get('search/article', [SearchController::class, 'searchArticle']);
 Route::get('search/internship', [SearchController::class, 'searchInternship']);
 Route::get('search/job', [SearchController::class, 'searchJob']);
+
+//route filtering
+Route::get('filter/job-popular', [FilterController::class, 'jobPopular']);
+Route::get('filter/max-sallary', [FilterController::class, 'maxSallary']);
+Route::get('filter/type-job', [FilterController::class, 'typeJob']);
+Route::get('filter/position', [FilterController::class, 'position']);
+
 

@@ -32,9 +32,22 @@ class SearchController extends Controller
 
     public function searchArticle(Request $request){
         $title = $request->input('search');
+        $category = $request->input('category');
     
-        $result = Article::where("title", "like", "%".$title."%")->get();
-        
+        $query = Article::query();
+    
+        $query->where(function ($query) use ($title, $category) {
+            if ($title) {
+                $query->where("title", "like", "%".$title."%");
+            }
+    
+            if ($category) {
+                $query->orWhere("category", $category);
+            }
+        });
+    
+        $result = $query->get();
+    
         if ($result->count() > 0) {
             return response()->json([
                 'status' => true,
@@ -48,6 +61,7 @@ class SearchController extends Controller
             ], 404);
         }
     }
+    
 
     public function searchInternship(Request $request){
         $position = $request->input('search');
@@ -70,11 +84,13 @@ class SearchController extends Controller
 
     public function searchJob(Request $request){
         $searchTerm = $request->input('search');
-    
+        
+
         $result = ListJob::where(function ($query) use ($searchTerm) {
             $query->where("jobdesk", "like", "%".$searchTerm."%")
                   ->orWhere("company_name", "like", "%".$searchTerm."%");
         })->get();
+        
     
         if ($result->count() > 0) {
             return response()->json([
@@ -90,6 +106,7 @@ class SearchController extends Controller
         }
     }
 
+   
     
     
     

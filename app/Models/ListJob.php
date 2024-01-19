@@ -9,6 +9,6 @@ class ListJob extends Model
 {
     use HasFactory;
     protected $table = 'jobs';
-    protected $fillable = ['company_name', 'jobdesk', 'location', 'type_job', 'company_image'];
+    protected $fillable = ['company_name', 'jobdesk', 'description', 'location', 'type_job', 'company_image', 'sallary_min', 'sallary_max'];
  
 }
