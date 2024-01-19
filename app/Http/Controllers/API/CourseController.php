@@ -13,7 +13,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $data = Course::orderBy('id')->get();
+        $data = Course::all();
         return response()->json([
             'status' => 'success',
             'message' => 'data succcesfully loaded',

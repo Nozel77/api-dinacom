@@ -29,9 +29,12 @@ class JobController extends Controller
         $dataListJob = new ListJob();
         $dataListJob->company_name = $request->company_name;
         $dataListJob->jobdesk = $request->jobdesk;
+        $dataListJob->description = $request->description;
         $dataListJob->location = $request->location;
         $dataListJob->type_job = $request->type_job;
         $dataListJob->company_image = $request->company_image;
+        $dataListJob->sallary_min = $request->sallary_min;
+        $dataListJob->sallary_max = $request->sallary_max;
 
         $post = $dataListJob->save();
         return response()->json([
@@ -64,9 +67,12 @@ class JobController extends Controller
         $dataListJob = ListJob::find($id);
         $dataListJob->company_name = $request->company_name;
         $dataListJob->jobdesk = $request->jobdesk;
+        $dataListJob->description = $request->description;
         $dataListJob->location = $request->location;
         $dataListJob->type_job = $request->type_job;
         $dataListJob->company_image = $request->company_image;
+        $dataListJob->sallary_min = $request->sallary_min;
+        $dataListJob->sallary_max = $request->sallary_max;
 
         $post = $dataListJob->save();
 
