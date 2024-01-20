@@ -90,6 +90,7 @@ class AuthController extends Controller
         'profile_image' => 'nullable|string',
         'banner_image' => 'nullable|string',
         'education' => 'nullable|string',
+        'about_me' => 'nullable|string',
     ]);
 
     if ($validator->fails()) {
@@ -107,6 +108,7 @@ class AuthController extends Controller
     $user->profile_image = $request->input('profile_image');
     $user->banner_image = $request->input('banner_image');
     $user->education = $request->input('education');
+    $user->about_me = $request->input('about_me');
 
     $isUpdated = $user->save();
 
