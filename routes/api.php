@@ -69,6 +69,8 @@ Route::get('course/detail/{detailCourse}', [DetailCourseController::class, 'show
 //route detail course after enroll
 Route::get('/enroll-course', [CourseEnrollController::class, 'index']);
 Route::post('/enroll-course', [CourseEnrollController::class, 'store']);
+Route::put('/enroll-course/{id}', [CourseEnrollController::class, 'update']);
+
 
 //route course-user
 Route::get('course-user/{user_id}', [CourseUserController::class, 'show']);
